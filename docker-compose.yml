@@ -1,0 +1,15 @@
+services:
+   redis: 
+     image: redislabs/redismod
+     container_name: redis
+     ports:
+       - '6379:6379' 
+   web:
+        build: .
+        container_name: web
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/code
+        depends_on:
+            - redis
